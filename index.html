@@ -6,6 +6,111 @@
 <title>الحقيبة التدريبية الشاملة - التسويق الرقمي | Ahmed Ashraf</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+/* ================= Navbar Styles ================= */
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: #007bff; }
+.nav-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #2c3e50;
+}
+
+/* Mobile Nav */
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    display: none;
+  }
+  .nav-links.active { display: flex; }
+}
+
+/* ================= WhatsApp Float ================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* تم وضعه في اليسار ليتناسب مع اتجاه RTL ولا يغطي شريط التمرير */
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s;
+  animation: pulse 2s infinite;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
   * {
     margin: 0;
     padding: 0;
@@ -908,6 +1013,20 @@
 </style>
 </head>
 <body>
+<nav class="main-nav">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">🎓 Apex | التسويق الرقمي</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#why-us">لماذا نحن؟</a></li>
+      <li><a href="#toc">المحتوى</a></li>
+      <li><a href="#appendices">الملاحق</a></li>
+      <li><a href="#outcomes">ماذا ستكتسب</a></li>
+      <li><a href="#audience">من المستفيد</a></li>
+      <li><a href="#enroll" class="nav-cta">سجل الآن</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle">☰</button>
+  </div>
+</nav>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -1708,6 +1827,25 @@
     observer.observe(el);
   });
 </script>
+<!-- زر الواتساب العائم -->
+<a href="https://wa.me/201004498440" target="_blank" class="whatsapp-float" title="تواصل معنا عبر واتساب">
+  <svg viewBox="0 0 32 32" width="32" height="32" fill="white">
+    <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.742 3.052 9.376L1.054 31.2l6.012-1.97A15.9 15.9 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.588c-.39 1.098-1.937 2.01-3.167 2.276-.846.18-1.95.324-5.67-1.218-4.762-1.972-7.826-6.81-8.064-7.124-.228-.314-1.928-2.566-1.928-4.894 0-2.328 1.22-3.47 1.654-3.944.39-.426 1.03-.618 1.642-.618.198 0 .376.01.536.018.474.02.712.048 1.024.79.39.93 1.34 3.26 1.458 3.5.12.24.24.558.078.872-.15.322-.282.464-.522.738-.24.274-.466.484-.706.778-.22.256-.468.53-.198.998.27.46 1.202 1.982 2.58 3.212 1.77 1.578 3.264 2.068 3.726 2.296.46.228.728.19.998-.114.278-.314 1.18-1.376 1.494-1.848.306-.472.62-.39 1.048-.234.434.15 2.742 1.292 3.212 1.528.47.238.782.356.898.554.114.198.114 1.146-.276 2.244z"/>
+  </svg>
+</a>
 
+<!-- Script لتشغيل قائمة الموبايل -->
+<script>
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('active');
+  });
+  
+  // إغلاق القائمة عند الضغط على أي رابط (في الموبايل)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+</script>
 </body>
 </html>
